@@ -1,12 +1,14 @@
 # Project Name
 
-#### -- Project Status: [Active, On-Hold, Completed]
+#### -- Project Status: [In-Progress]
 
 ## Project Intro/Objective
-The purpose of this project is to identify the Named Entity Recognization in clinical reports. 
+The purpose of this project is to identify the Named Entity Recognition in clinical reports. 
 I used the Unified Medical Language System (UMLS) database for the baseline for disease and symptoms names.
 The data used in this project is "n2c2 NLP Research Data Sets".
-For UMLS and n2c2 dataset, we need proper license from the respective sites.  
+For UMLS and n2c2 dataset, we need proper license from the respective sites.
+
+![Symptoms, Disease Names Extraction](web/static/images/ProjectFrontPage.png)
 
 ### Collaborators
 |Name     |  Github Page   |  Personal Website  |
@@ -24,6 +26,7 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 
 ### Technologies
 * Python
+* sklearn_crfsuite
 * MySql
 * Pandas, jupyter
 * HTML
@@ -41,10 +44,11 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 4. etc...
 5. Follow setup [instructions](Link to file)
 
-## Featured Notebooks/Analysis/Deliverables
-* [Notebook/Markdown/Slide Deck Title](#)
-* [Notebook/Markdown/Slide DeckTitle](#)
-* [Blog Post](#)
+## Future Updates in progress
+
+1. Increase accuracy
+2. CRF implementation
+3. Negation detection
 
 ---
 

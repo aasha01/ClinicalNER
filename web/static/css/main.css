@@ -54,6 +54,44 @@ input[type="file"] {
     animation: spin 1s linear infinite;
 }
 
+.result-textarea {
+  display: block;
+  overflow: hidden;
+  margin: 1em auto 2em;
+  background: #EFEEEE;
+  border: 1px;
+
+}
+
+.input__field {
+  position: relative;
+  display: block;
+  float: right;
+  padding: 0.8em;
+  width: 60%;
+  font-size: 20px;
+  background: white;
+  border: 1px solid black;
+  color: dark;
+  font-weight: bold;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  -webkit-appearance: none;
+  /* for box shadows to show on iOS */
+}
+
+.entity-format {
+  background-color:lightgreen;
+  border: 1px solid black;
+  color: darkgreen;
+}
+
+.highlight {
+    background-color: #A569BD;
+    border: 1px solid #4A235A;
+
+}
+
+
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }

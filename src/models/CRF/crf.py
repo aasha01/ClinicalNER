@@ -115,13 +115,39 @@ def predict_result(report_text):
     crf = get_saved_crf_model()
     y_predicted = crf.predict(X_test)
     print(y_predicted)
-    return {"Result": str(parse_output(X_test, y_predicted))}
+    print("Parsed html result:" + parse_output_html(str(parse_output(X_test, y_predicted))))
+    text = " ".join(parse_output(X_test, y_predicted))
+    print("Parsed html after join:" + parse_output_html(text))
+    print("Parsed result:" + str(parse_output(X_test, y_predicted)))
+    return {"Result": parse_output_html(text)}
     #if output_format == OUTPUT_FORMAT_TEXT:
     #    return {"Result": str(parse_output(X_test, y_predicted))}
     #elif output_format == OUTPUT_FORMAT_TUPLE:
     #    return {"Result": str(parse_output_tuples(X_test, y_predicted))}
     #else:
     #    return {"Result": str(parse_output(X_test, y_predicted))}
+
+
+def parse_output_html(text):
+    print("text: " + text)
+    parsed_text = text.split()
+    sentences = []
+    inside = False;
+    for word in parsed_text:
+        parts = word.split("/")
+        if parts[1] == "B":
+            inside = True
+            sentences.append("<span class='highlight'>" + parts[0])
+        elif parts[1] == "O":
+            if inside:
+                sentences.append("</span> " + parts[0])
+                inside = False
+            else:
+                sentences.append(parts[0])
+        elif parts[1] == "I":
+            sentences.append(parts[0])
+    print("all html: " + str(sentences))
+    return " ".join(word for word in sentences)
 
 
 def parse_output(X, y):

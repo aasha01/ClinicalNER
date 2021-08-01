@@ -2,7 +2,7 @@
 
 {% block content %}
 
-<h1 style="color: teal;"><center><b>Clinical NER System</b></center></h1>
+<h1 style="color: dark;"><center><b>Analyze Report Text</b></center></h1>
 
 <div>
     <center>
@@ -14,12 +14,13 @@
                     <label for="report_text" class="">
                         Paste the report text here:
                     </label>
-                    <button type="button" class="btn btn-primary btn-lg "  id="btn-predict" name="btn-predict">Analyze!</button>
+                    <button type="button" class="btn btn-dark btn-sm"  id="btn-predict" name="btn-predict">Analyze!</button>
+                    <!--<button type="button" class="btn btn-dark btn-sm"  id="btn-predict-test" name="btn-predict-test">Test!</button>-->
                 </td>
             </tr>
             <tr>
                 <td>
-                    <textarea  name="report_text" id="report_text" rows="10" cols="60"></textarea>
+                    <textarea  name="report_text" id="report_text" rows="6" cols="120"></textarea>
                 </td>
             </tr>
             <tr>
@@ -34,7 +35,12 @@
             </tr>
             <tr>
                 <td>
-                    <textarea  name="tagged_report_text" id="tagged_report_text" rows="10" cols="60"></textarea>
+                    <div class="input__field" name="tagged_report_text" id="tagged_report_text" style="height: 200px; width: 1055px;">
+                        <!--<textarea  name="tagged_report_text" id="tagged_report_text" rows="6" cols="120">
+
+
+                        </textarea>-->
+                    </div>
                 </td>
             </tr>
         </table>
@@ -50,15 +56,22 @@
 <script src="{{ url_for('static',filename='js/sweetalert2.all.js') }}"></script>
 	<script type="text/javascript">
         $(document).ready(function(){
-            $('#btn-predict').click(function(){
+
+            $('#btn-predict-test').click(function(){
                 alert(1);
+                text = "This is a <span class='highlight'> GFG</span> test  NER"
+                $('#tagged_report_text').html(text);
+            });
+
+            $('#btn-predict').click(function(){
+                <!--alert(1);-->
                 $.ajax({
                     url: '/predict',
                     data: $('form').serialize(),
                     type: 'POST',
                     success: function(response){
-                        alert(response);
-                        $('#tagged_report_text').val(response);
+                        <!--alert(response);-->
+                        $('#tagged_report_text').html(response);
                         console.log(response);
                     },
                     error: function(error){
