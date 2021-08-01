@@ -5,7 +5,7 @@ import pickle as pkl
 
 
 def get_connection():
-    conn = connect_umls('aasha', '24H=1day', 'localhost', 'umls')
+    conn = connect_umls('aasha', '********', 'localhost', 'umls')
     return conn
 
 
