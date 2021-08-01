@@ -32,7 +32,7 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 * HTML
 * etc.
 
-## Project Description
+<!--## Project Description
 (Provide more detailed overview of the project.  Talk a bit about your data sources and what questions and hypothesis you are exploring. What specific data analysis/visualization and modelling work are you using to solve the problem? What blockers and challenges are you facing?  Feel free to number or bullet point things here)
 
 
@@ -42,7 +42,7 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 2. Raw Data is being kept [here](Repo folder containing raw data) within this repo.
 3. Data processing/transformation scripts are being kept [here](Repo folder containing data processing scripts/notebooks)
 4. etc...
-5. Follow setup [instructions](Link to file)
+5. Follow setup [instructions](Link to file)-->
 
 ## Future Updates in progress
 
