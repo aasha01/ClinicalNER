@@ -16,7 +16,7 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 |Asha Ponraj | [asha](https://github.com/aasha01)| [www.devskrol.com](https://devskrol.com/)  |
 
 ### Methods Used
-* Conditional Random Fields from pycrfsuite
+* Conditional Random Fields from sklearn_crfsuite
 * Machine Learning techniques
 * NLP tasks
 * Predictive Modeling
