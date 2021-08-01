@@ -20,10 +20,15 @@ from sklearn.model_selection import RandomizedSearchCV, GridSearchCV, train_test
 os.putenv('LANG', 'en_US.UTF-8')
 os.putenv('LC_ALL', 'en_US.UTF-8')
 
-app = Flask(__name__)
+app = Flask(__name__,
+            static_url_path='',
+            static_folder='web/static',
+            template_folder='web/templates')
 CORS(app)
 
-tagged = pd.read_csv("..\\data\\rpt_words_clean_24April_01.csv")
+tagged = pd.read_csv(
+    "D:\\Work\\Projects\\ideas_WHI\\PapersWithCode_NegationDetection\\UMLS_Utils\\src\\models\\data"
+    "\\rpt_words_clean_24April_01.csv")
 tagged = tagged.loc[0:4011]
 tagged['Tag'].fillna('O', inplace=True)
 tag_list = []
@@ -65,15 +70,23 @@ def model_crf():
 
 
 def get_saved_crf_model():
-    features_pkl = '..\\saved_models\\crf.pickle'
+    features_pkl = 'D:\\Work\\Projects\\ideas_WHI\\PapersWithCode_NegationDetection\\UMLS_Utils\\src\\models' \
+                   '\\saved_models\\crf.pickle'
     return pkl.load(open(features_pkl, 'rb'))
+
+
+@app.route('/', methods=['GET'])
+def index():
+    # Main page
+    return render_template('index.html')
 
 
 @app.route("/train", methods=['POST'])
 @cross_origin()
 def train_crf():
     crf = model_crf()
-    features_pkl = '..\\saved_models\\Word_Features.pickle'
+    features_pkl = 'D:\\Work\\Projects\\ideas_WHI\\PapersWithCode_NegationDetection\\UMLS_Utils\\src\\models' \
+                   '\\saved_models\\Word_Features.pickle'
     X_train = pkl.load(open(features_pkl, 'rb'))
     y_train = get_labels_lol()
     crf.fit(X_train, y_train)
@@ -88,13 +101,27 @@ def predict():
     X_test = get_train_features(report_text)
     crf = get_saved_crf_model()
     y_predicted = crf.predict(X_test)
-    #print(y_predicted)
+    # print(y_predicted)
     if output_format == OUTPUT_FORMAT_TEXT:
         return {"Result": str(parse_output(X_test, y_predicted))}
     elif output_format == OUTPUT_FORMAT_TUPLE:
         return {"Result": str(parse_output_tuples(X_test, y_predicted))}
     else:
         return {"Result": str(parse_output(X_test, y_predicted))}
+
+
+def predict_result(report_text):
+    X_test = get_train_features(report_text)
+    crf = get_saved_crf_model()
+    y_predicted = crf.predict(X_test)
+    print(y_predicted)
+    return {"Result": str(parse_output(X_test, y_predicted))}
+    #if output_format == OUTPUT_FORMAT_TEXT:
+    #    return {"Result": str(parse_output(X_test, y_predicted))}
+    #elif output_format == OUTPUT_FORMAT_TUPLE:
+    #    return {"Result": str(parse_output_tuples(X_test, y_predicted))}
+    #else:
+    #    return {"Result": str(parse_output(X_test, y_predicted))}
 
 
 def parse_output(X, y):
@@ -113,6 +140,9 @@ def parse_output_tuples(X, Y):
 
 
 # port = int(os.getenv("PORT"))
-if __name__ == "__main__":
-    # app.run(host='0.0.0.0', port=port)
-    app.run(host='0.0.0.0', port=8000, debug=True)
+# if __name__ == "__main__":
+# app.run(host='0.0.0.0', port=port)
+#    app.run(host='0.0.0.0', port=8000, debug=True)
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0')

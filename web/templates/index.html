@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h1 style="color: teal;"><center><b>Clinical NER System</b></center></h1>
+
+<div>
+    <center>
+    <div class="gap" align="center"></div>
+    <form id="report_form" method="post" enctype="multipart/form-data" role="form">
+        <table>
+            <tr>
+                <td>
+                    <label for="report_text" class="">
+                        Paste the report text here:
+                    </label>
+                    <button type="button" class="btn btn-primary btn-lg "  id="btn-predict" name="btn-predict">Analyze!</button>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea  name="report_text" id="report_text" rows="10" cols="60"></textarea>
+                </td>
+            </tr>
+            <tr>
+            </br>
+            </tr>
+            <tr>
+                <td>
+                    <label for="report_text" class="">
+                        Parsed report text:
+                    </label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <textarea  name="tagged_report_text" id="tagged_report_text" rows="10" cols="60"></textarea>
+                </td>
+            </tr>
+        </table>
+
+    </form>
+
+    <div class="loader" style="display:none;"></div>
+
+    </center>
+</div>
+
+
+<script src="{{ url_for('static',filename='js/sweetalert2.all.js') }}"></script>
+	<script type="text/javascript">
+        $(document).ready(function(){
+            $('#btn-predict').click(function(){
+                alert(1);
+                $.ajax({
+                    url: '/predict',
+                    data: $('form').serialize(),
+                    type: 'POST',
+                    success: function(response){
+                        alert(response);
+                        $('#tagged_report_text').val(response);
+                        console.log(response);
+                    },
+                    error: function(error){
+                        console.log(error);
+                    }
+                });
+            });
+        });
+        function alerting(){
+            alert("test");
+        }
+    </script>
+{% endblock %}
