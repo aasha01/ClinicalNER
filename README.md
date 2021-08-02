@@ -44,11 +44,12 @@ For UMLS and n2c2 dataset, we need proper license from the respective sites.
 4. etc...
 5. Follow setup [instructions](Link to file)-->
 
-## Future Updates in progress
+## Future Enhancements
 
 1. Increase accuracy
 2. CRF implementation
 3. Negation detection
+4. Differentiate Symptoms, Disease names, Exam names.
 
 ---
 
