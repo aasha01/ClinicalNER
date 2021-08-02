@@ -8,6 +8,8 @@ I used the Unified Medical Language System (UMLS) database for the baseline for 
 The data used in this project is "n2c2 NLP Research Data Sets".
 For UMLS and n2c2 dataset, we need proper license from the respective sites.
 
+Notebooks are not committed to this repo. due to the n2c2 dataset PHI & policies.
+
 ![Symptoms, Disease Names Extraction](web/static/images/ProjectFrontPage_Orange.png)
 
 ### Collaborators
