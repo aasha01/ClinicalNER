@@ -23,7 +23,7 @@ def remove_special_characters_except(text, remove_digits=False):
 
 def clean_report_text(text):
     text = text.translate(text.maketrans("\n\t\r", "   "))
-    text = remove_special_characters_except(text, remove_digits=True)
+    text = remove_special_characters_except(text, remove_digits=False)
     return text
 
 
